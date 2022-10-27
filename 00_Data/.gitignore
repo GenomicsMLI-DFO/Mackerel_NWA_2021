@@ -1,0 +1,7 @@
+*.vcf
+*.tped
+*.tfam
+*.bim
+*.fam
+*.log
+*.nosex

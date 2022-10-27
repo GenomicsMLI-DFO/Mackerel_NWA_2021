@@ -1,0 +1,7 @@
+# Ignore structure files - probably very big over 100 MB
+*.str
+
+# But not these files...
+!.gitignore
+
+

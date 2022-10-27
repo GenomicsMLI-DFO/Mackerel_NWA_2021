@@ -1,0 +1,20 @@
+ Analysis Description ( R - assignPOP ver. 1.2.2 )
+ Perform assign.MC() @ 2021-11-05 19:51:40 
+
+ train.inds = 0.7 
+ train.loci = 1 
+ iterations = 30 
+ Total assignment tests = 30 
+ Fst locus sample method: fst 
+ Data scaled and centerd: FALSE 
+ PC retaining criteria: kaiser-guttman 
+ PCA for non-genetic data: NA 
+ Machine learning model: svm 
+
+ Input Data ( genetics )
+ Number of individuals: 116 
+ Number of loci: 10703 
+ Number of non-genetic variables: 0 
+ Number of populations: 2 
+ CAN US 
+ 53 63 

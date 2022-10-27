@@ -1,0 +1,22 @@
+DATATYPE 1
+INDFILE  ./02_Results/02_Structure/01_Global/clumpp.popfile.k2
+POPFILE ./02_Results/02_Structure/01_Global/clumpp.popfile.k2
+OUTFILE ./02_Results/02_Structure/01_Global/clumpp.out.k2
+MISCFILE ./02_Results/02_Structure/01_Global/clumpp.misc.k2
+K 2
+C 629
+R 10
+M 1
+W 1
+S 2
+GREEDY_OPTION 2
+REPEATS 1000
+PERMUTATIONFILE
+PRINT_PERMUTED_DATA 1
+PERMUTED_DATAFILE ./02_Results/02_Structure/01_Global/clumpp.perm.k2
+PRINT_EVERY_PERM 0
+EVERY_PERMFILE
+PRINT_RANDOM_INPUTORDER 0
+RANDOM_INPUTORDERFILE
+OVERRIDE_WARNINGS 0
+ORDER_BY_RUN 1

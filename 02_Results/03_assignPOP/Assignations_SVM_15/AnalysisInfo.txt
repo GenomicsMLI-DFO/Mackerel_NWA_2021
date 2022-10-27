@@ -1,0 +1,18 @@
+ Analysis Description ( R - assignPOP ver. 1.2.2 )
+ Perform assign.X() @ 2021-11-26 14:14:56 
+
+ Data scaled and centerd: FALSE 
+ PC retaining criteria: kaiser-guttman 
+ PCA for non-genetic data: NA 
+ Machine learning model: svm 
+
+ Input Data ( genetics )
+ Number of known individuals: 85 
+ Number of known populations 2 
+ CAN US 
+ 47 38 
+
+ Number of unknown individuals: 363 
+ Number of unknown individuals assigned to populations:
+ CAN US 
+ 267 96 

@@ -1,0 +1,5 @@
+# Ignore raw simulation files
+* 
+
+!.gitignore
+!*.csv
