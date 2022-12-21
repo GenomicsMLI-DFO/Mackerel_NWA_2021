@@ -28,29 +28,6 @@ library(remotes)
 remotes::install_github("biodray/QuickPop")
 library(QuickPop)
 
-
-# PCA
-#library("adegraphics")
-#library("lattice")
-#library("gplots")
-#library("ggmap")
-
-# RDA
-#library(codep)
-#library(adespatial)
-#library(adegraphics)
-#library(vegan)
-#library(ape)
-#library(car)
-
-# Internal functions
-#for(i in 1:length( list.files("./02_Functions") )){
-#  source(file.path("./02_Functions",  list.files("./02_Functions")[i]))  
-#}
-
-# Define initial working directory
-#current.wd <- getwd()
-
 # Functions ---------------------------------------------------------------
 
 `%nin%` = Negate(`%in%`)
@@ -129,7 +106,7 @@ pop.data %>% filter(Cat_Sample == "Sample",
                     SNP_panel == "Yes",
                     REF_assign %in% c("CAN", "US")) %>%  
   mutate(Age = as.numeric(as.character(Age))) %>% 
-  group_by(Country, Month, NAFO) %>% summarise(N = n(),
+  group_by(Country, Year, Month, NAFO) %>% summarise(N = n(),
                                                MeanAge = mean(Age, na.rm = T) %>% round(digits = 1),
                                                minAge = min(Age, na.rm = T),
                                                maxAge = max(Age, na.rm = T))
@@ -340,58 +317,29 @@ pop(gi.global.div4) %>% table()
 
 # With a DAPC
 daPop.dup.prelim <- dapc(gl.global.dup, pop = pop(gl.global.dup), n.da=100, n.pca=80)
-temp <- optim.a.score(daPop.dup.prelim)
 
-scatter.dapc(daPop.dup.prelim, xax=1, scree.pca=T, posi.pca = "topleft")
+scatter.dapc(daPop.dup.prelim, xax=1, scree.pca=T, posi.pca = "topleft", legend=TRUE)
 #scatter.dapc(daPop.ame.opti, xax=1, yax=2, scree.pca=T, posi.pca="bottomleft")
 
 # With an AMOVA
 # 
  sequencer.vec <- pop(gi.global.dup)
  ind.dup.vec   <- sapply(str_split(indNames(gi.global.dup), "_"), `[`, 2)
-# loci <- hf.global.dup [, -1] 
-# 
-# sequencer.vec %>% table()
-# ind.dup.vec %>% table()
-# 
-# amova.seq <- test.g(loci, level = sequencer.vec) 
-# amova.seq2 <- varcomp.glob(levels = data.frame(sequencer.vec), loci, diploid = TRUE) 
-# amova.seq3 <- varcomp.glob(levels = data.frame(ind.dup.vec), loci, diploid = TRUE) 
-# 
-# amova.seq4 <- test.between(loci, test.lev = sequencer.vec, rand.unit = ind.dup.vec, nperm = 100) 
-# amova.seq5 <- test.between(loci, test.lev = ind.dup.vec, rand.unit = sequencer.vec, nperm = 100) 
-# 
-# amova.seq
-# amova.seq2
-# amova.seq3
-# amova.seq4
-# amova.seq5
 
 library(poppr)
 
 strata(gi.global.dup) <- data.frame(SEQ = sequencer.vec, IND = ind.dup.vec)
 
-# amova.result <- poppr.amova(gi.global.dup, ~IND/SEQ, method = "pegas")  
-# amova.result
-# 
-# 
-# amova.result.ind <- poppr.amova(gi.global.dup, ~IND+SEQ, within = T)  
-# amova.result.ind
-# 
-# amova.test <- randtest(amova.result) # Test for significance
-# plot(amova.test)
-# 
-# amova.test
 
-
-amova.result.seq <- poppr.amova(gi.global.dup, ~SEQ)  
+amova.result.seq <- poppr.amova(gi.global.dup, ~ SEQ, method = "ade4", within = FALSE)  
 amova.result.seq
 
-amova.test.seq <- randtest(amova.result.seq) # Test for significance
-plot(amova.test)
+amova.test.seq <- ade4::randtest(amova.result.seq,  nrepet = 999) # Test for significance
+plot(amova.test.seq)
 
 amova.test.seq
   
+
 # Basic stats -------------------------------------------------------------
 
 na.gl.ind<- function(gl){
@@ -1688,7 +1636,9 @@ dapc.global.res <- data.frame(ID_GQ = row.names( daPop.global.opti$ind.coord),
 library(ggridges)
 
 ggdapc1.global <- dapc.global.res %>% ggplot(aes(x = LD1, y = Site, fill = Site)) + 
-  geom_density_ridges(alpha = 0.75, scale = 1.5) + 
+  geom_density_ridges(alpha = 0.75, scale = 1.5,
+                      quantile_lines=TRUE,
+                      quantile_fun=function(x,...)mean(x)) + 
   #scale_fill_manual(values =  c("firebrick2", "dodgerblue1")) +
   scale_fill_manual(values = c("chocolate4", "chartreuse4", "firebrick2", "dodgerblue1")) +
   scale_y_discrete(labels = c("Bay of Biscay", "Greenland", "Canada", "US")) +
@@ -1743,12 +1693,14 @@ library(ggridges)
 
 dapc.ame.res <- data.frame(ID_GQ = row.names( daPop.ame.opti$ind.coord),
                   LD1 =  daPop.ame.opti$ind.coord[,1]) %>% left_join(pop.data) %>% 
- mutate(#new.pop = ifelse(REF_assign %in% c("CAN", "US"), paste0("Ref-", REF_assign), new.NAFO),
+ mutate(new.NAFO = ifelse(REF_assign %in% c("CAN", "US"), paste0("Ref-", REF_assign), new.NAFO),
     
     new.NAFO = factor(new.NAFO, levels = c("Ref-US", "6AB","5Zw","5YZe",  "4WX", "3Ps4Vn", "4T", "4RS", "3K", "Ref-CAN")))
 
 ggdapc1.ame <- dapc.ame.res %>% ggplot(aes(x = LD1, y = new.NAFO, fill = Country)) + 
-  geom_density_ridges(alpha = 0.75, scale = 1.5) + 
+  geom_density_ridges(alpha = 0.75, scale = 1.5,
+                      quantile_lines=TRUE,
+                      quantile_fun=function(x,...)mean(x))+ 
   scale_fill_manual(values =  c("firebrick2", "dodgerblue1")) +
   #geom_vline(xintercept = c( -1.6479146, 0.7751274), lty = "dashed", col =  c("firebrick2", "dodgerblue1")) +
   labs(x = "DA1", y = "") +
@@ -1797,7 +1749,7 @@ ggdapc.all <- ggpubr::ggarrange(ggdapc.global, ggdapc.ame, labels = c("A", "B"),
 ggdapc.all
 
 
-ggsave(filename = here("02_Results/figS_DAPC_ALL.png"), plot = ggdapc.all, 
+ggsave(filename = here("02_Results/figS_DAPC_ALL_v2.png"), plot = ggdapc.all, 
        width = 6, height = 8 , units = "in", bg = "white",
        dpi = 300)
 
