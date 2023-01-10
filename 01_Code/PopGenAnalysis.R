@@ -724,7 +724,7 @@ res.PCA.ref.table <- res.PCA.ref.table %>% left_join(mean.axis ) %>% mutate(nNA 
 
 figS4.PCA <- res.PCA.ref.table  %>% 
   ggplot(aes(x = score.PC1, y = score.PC2)) +
-    stat_ellipse(aes(col =REF_assign),  level = 0.70) +
+#    stat_ellipse(aes(col =REF_assign),  level = 0.70) +
   #ggforce::geom_mark_ellipse(aes(label = REF_assign, col =REF_assign, filter = !is.na(REF_assign)))+
   geom_hline(yintercept = 0) +
   geom_vline(xintercept = 0) +
@@ -930,7 +930,9 @@ ggsave(filename = here("02_Results/fig2_PCA_withREF.png"), plot = fig2v2,
        width = 8, height = 3 , units = "in", bg = "white",
        dpi = 300)
 
-
+ggsave(filename = here("02_Results/fig2_PCA_withREF.eps"), plot = fig2v2, 
+       width = 8, height = 3 , units = "in", bg = "white",
+       dpi = 300)
 
 figNAv2 <- ggpubr::ggarrange(fig2a.NA + theme(axis.title = element_text(size = 10 ),
                                   
@@ -1677,14 +1679,20 @@ ggdapc3.global
 pop(gl.america.samples) %>% table
 
 #vec.pop <- data.frame(ID_GQ = indNames(gl.america.samples)) %>% left_join(pop.data) %>% 
-#  mutate(new.pop = ifelse(REF_assign %in% c("CAN", "US"), paste0("Ref-", REF_assign), new.NAFO)) %>% 
+#  mutate(new.pop = ifelse(REF_assign %in% c("CAN", "US"), paste0("Ref", REF_assign), new.NAFO)) %>% 
 #  pull(new.pop)
 
 daPop.ame.prelim <- dapc(gl.america.samples, pop = pop(gl.america.samples), n.da=10, n.pca=200, glPca= pca.america)
+#daPop.ame.prelim <- dapc(gl.america.samples, pop = factor(vec.pop), n.da=10, n.pca=200, glPca= pca.america)
+
 temp <- optim.a.score(daPop.ame.prelim, n.sim=20) # 115 - 152
+temp
 
 daPop.ame.opti <- dapc(gl.america.samples, pop = pop(gl.america.samples), 
                        n.da=10, n.pca=120,  glPca= pca.america)
+
+#daPop.ame.opti <- dapc(gl.america.samples, pop = factor(vec.pop), 
+#                       n.da=10, n.pca=120,  glPca= pca.america)
 
 adegenet::scatter.dapc(daPop.ame.opti, xax=1, yax=2, scree.pca=T, posi.pca="bottomleft", legend = T)
 
@@ -1789,8 +1797,8 @@ ref.FST$Bootstraps$`p-value`
 
 # Save Fst results
 
-save(list = c("global.FST","america.FST", "ref.FST"),
-     file = file.path(here("02_Results/04_Fst/Fst.data")))
+#save(list = c("global.FST","america.FST", "ref.FST"),
+#     file = file.path(here("02_Results/04_Fst/Fst.data")))
 
 load(file.path(here("02_Results/04_Fst/Fst.data")))
 
@@ -1841,7 +1849,7 @@ ggFst <- res.america.FST %>%
   ggplot(aes(x = Comparison, y = Fst)) + 
   geom_hline(yintercept = 0, col = "gray") +
   facet_grid(. ~ Levels, space = "free", scale = "free") +
-  labs(x = "") +
+  labs(x = "Pairwise comparison of NAFO divisions") +
   theme_bw() +
   theme(strip.text.y = element_text(angle = 0),
         axis.text.x = element_text(angle =  90, vjust = 0.5, hjust = 1))
@@ -1854,6 +1862,7 @@ fig3 <- ggFst +
   geom_point(size = 4) +
   geom_pointrange(aes(ymin = `Lower bound CI limit`, ymax = `Upper bound CI limit`)) 
 
+fig3
 
 fig3.v2 <- ggFst + geom_rect(data=NULL,aes(xmin=-Inf,xmax=Inf,ymin = ref.FST$Bootstraps$`Lower bound CI limit`, ymax = ref.FST$Bootstraps$`Upper bound CI limit`),
                   fill= "lemonchiffon", col = "lemonchiffon2", cex = 0.2)+
@@ -1862,17 +1871,19 @@ fig3.v2 <- ggFst + geom_rect(data=NULL,aes(xmin=-Inf,xmax=Inf,ymin = ref.FST$Boo
   geom_pointrange(aes(ymin = `Lower bound CI limit`, ymax = `Upper bound CI limit`)) 
 fig3.v2
 
-ggsave(filename = here("02_Results/fig3_Fst_NWA.png"), plot = fig3, 
-       width = 7, height = 4 , units = "in",
-       dpi = 300)
-
-#ggsave(filename = here("02_Results/fig3.v2_Fst_NWA.png"), plot = fig3.v2, 
+#ggsave(filename = here("02_Results/fig3_Fst_NWA.png"), plot = fig3, 
 #       width = 7, height = 4 , units = "in",
 #       dpi = 300)
 
-ggsave(filename = here("02_Results/fig3.v3_Fst_NWA.png"), plot = fig3.v2, 
+ggsave(filename = here("02_Results/fig3.v4_Fst_NWA.png"), plot = fig3.v2, 
        width = 7, height = 4 , units = "in",
        dpi = 300)
+
+ggsave(filename = here("02_Results/fig3.v4_Fst_NWA.eps"), plot = fig3.v2, 
+       width = 7, height = 4 , units = "in",
+       dpi = 300)
+
+
 # Assignation to references : MC validation -----------------------------------------------
 
 # Save external in structure format
@@ -1978,7 +1989,7 @@ fig4a <- accuMC.all %>% mutate(P.train.loci = as.numeric(as.character(train.loci
   geom_hline(yintercept = c(0.5), lty = "dashed") +
   geom_boxplot() +
   facet_grid(. ~ model, space = "free_x", scale = "free_x") +
-  labs(x = "Reference contingent", y = "Assigment accuracy") +
+  labs(x = "Reference contingent", y = "Assignment accuracy") +
   scale_x_discrete(labels = c("Northern", "Southern")) +
   scale_fill_manual(values = c("gray100", "gray85", "gray70", "gray40"))+
   guides(fill=guide_legend(title="% of SNPs")) +
@@ -1999,7 +2010,7 @@ fig4a.v2 <- accuMC.all %>% mutate(P.train.loci = as.numeric(as.character(train.l
   geom_hline(yintercept = c(0.5), lty = "dashed") +
   geom_boxplot() +
   #facet_grid(. ~ model, space = "free_x", scale = "free_x") +
-  labs(x = "Reference contingent", y = "Assigment accuracy") +
+  labs(x = "Reference contingent", y = "Assignment accuracy") +
   scale_y_continuous(limits = c(0,1)) +
   scale_x_discrete(labels = c("Northern", "Southern")) +
   scale_fill_manual(values = c("firebrick2", "dodgerblue1"))+
@@ -2009,9 +2020,9 @@ fig4a.v2 <- accuMC.all %>% mutate(P.train.loci = as.numeric(as.character(train.l
 
 fig4a.v2
 
-ggsave(filename = here("02_Results/fig4a.v2_MCvalidation.png"), plot = fig4a.v2, 
-       width = 3, height = 3 , units = "in",
-       dpi = 300)
+#ggsave(filename = here("02_Results/fig4a.v2_MCvalidation.png"), plot = fig4a.v2, 
+#       width = 3, height = 3 , units = "in",
+#       dpi = 300)
 
 # Assignation to references : Simulated Hybrids -----------------------------------------------
 
@@ -2185,15 +2196,15 @@ fig4b <- RES.final %>% group_by(Ind.ID, CAT, Serie) %>%
   #          fill= scales::alpha("dodgerblue1", 1/150))+
   geom_boxplot() +
   scale_y_discrete(labels = c("Pure southern", "Backcross southern", "F1 hybrids", "F2 hybrids", "Backcross northern", "Pure northern")) +
-  labs(y = "Simulated genotype", x = "Membership probability") +
+  labs(y = "Simulated genotype", x = "Membership prob. to the northern contingent") +
   #geom_jitter(aes(col = Serie)) +
   theme_bw() 
 
 fig4b
 
-ggsave(filename = here("02_Results/fig4b_Hybridvalidation.png"), plot = fig4b, 
-       width = 7, height = 3 , units = "in",
-       dpi = 300)
+#ggsave(filename = here("02_Results/fig4b_Hybridvalidation.png"), plot = fig4b, 
+#       width = 7, height = 3 , units = "in",
+#       dpi = 300)
 
 # Joining fig4 a and b
 library(ggpubr)
@@ -2209,9 +2220,9 @@ fig4 <- ggarrange(fig4a + theme(axis.title = element_text(size = 10 ),
 
 fig4
 
-ggsave(filename = here("02_Results/fig4_AssignmentValidation.png"), plot = fig4, 
-       width = 7, height = 6 , units = "in",
-       dpi = 300)
+#ggsave(filename = here("02_Results/fig4_AssignmentValidation.png"), plot = fig4, 
+#       width = 7, height = 6 , units = "in",
+#       dpi = 300)
 
 fig4.v2 <- ggarrange(fig4a.v2 + theme(axis.title = element_text(size = 10 ),
                                 
@@ -2224,9 +2235,14 @@ fig4.v2 <- ggarrange(fig4a.v2 + theme(axis.title = element_text(size = 10 ),
 
 fig4.v2
 
-ggsave(filename = here("02_Results/fig4.v2_AssignmentValidation.png"), plot = fig4.v2, 
+ggsave(filename = here("02_Results/fig4.v2_AssignmentValidation_v1.png"), plot = fig4.v2, 
        width = 6, height = 3 , units = "in",
        dpi = 300)
+
+ggsave(filename = here("02_Results/fig4.v2_AssignmentValidation_v1.eps"), plot = fig4.v2, 
+       width = 6, height = 3 , units = "in",
+       dpi = 300)
+
 
 # Assignation to references : random samples  -----------------------------------------------
 library(assignPOP)
@@ -2584,9 +2600,9 @@ fig5.v2 <- ggarrange(fig5a + theme( plot.margin = margin(t = 10, r = 10, b = 10,
 
 fig5.v2
 
-ggsave(filename = here("02_Results/fig5.v2_AdultAssignments.png"), plot = fig5.v2, 
-       width = 8, height = 4 , units = "in",
-       dpi = 300)
+#ggsave(filename = here("02_Results/fig5.v2_AdultAssignments.png"), plot = fig5.v2, 
+#       width = 8, height = 4 , units = "in",
+#       dpi = 300)
 
 #
 
@@ -2694,7 +2710,12 @@ fig5.v4 <- ggpubr::ggarrange(fig5a.v1 + theme( #plot.margin = margin(t = 10, r =
 
 
 fig5.v4
+
 ggsave(filename = here("02_Results/fig5.v4_AdultAssignments.png"), plot = fig5.v4, 
+       width = 8, height = 4 , units = "in",
+       dpi = 300)
+
+ggsave(filename = here("02_Results/fig5.v4_AdultAssignments.eps"), plot = fig5.v4, 
        width = 8, height = 4 , units = "in",
        dpi = 300)
 
