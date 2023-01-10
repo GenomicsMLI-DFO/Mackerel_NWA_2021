@@ -2230,7 +2230,7 @@ fig4.v2 <- ggarrange(fig4a.v2 + theme(axis.title = element_text(size = 10 ),
                   fig4b + theme(axis.title = element_text(size = 10 ),
                                           plot.margin = margin(10, 10, 10, 20, "pt")),
                   labels = c("A", "B"),
-                  widths =c(3,5),
+                  widths =c(2.5,5),
                   ncol = 2, align = "h")
 
 fig4.v2
