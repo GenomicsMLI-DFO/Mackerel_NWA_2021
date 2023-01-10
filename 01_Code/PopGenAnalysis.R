@@ -2196,7 +2196,7 @@ fig4b <- RES.final %>% group_by(Ind.ID, CAT, Serie) %>%
   #          fill= scales::alpha("dodgerblue1", 1/150))+
   geom_boxplot() +
   scale_y_discrete(labels = c("Pure southern", "Backcross southern", "F1 hybrids", "F2 hybrids", "Backcross northern", "Pure northern")) +
-  labs(y = "Simulated genotype", x = "Membership prob. to the northern contingent") +
+  labs(y = "Simulated genotype", x = "Membership prob. to northern contingent") +
   #geom_jitter(aes(col = Serie)) +
   theme_bw() 
 
