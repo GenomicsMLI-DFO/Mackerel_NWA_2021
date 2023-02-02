@@ -1,10 +1,10 @@
-# Population Genomics of Atlantic Mackerel in Northwest Atlantic
+# Quantifying genetic differentiation and population assignment among two contingents of Atlantic mackerel (Scomber scombrus) in the Northwest Atlantic
 
 __Main author:__  Audrey Bourret  
 __Affiliation:__  Fisheries and Oceans Canada (DFO)   
 __Group:__        Laboratory of genomics   
 __Location:__     Maurice Lamontagne Institute  
-__Affiliated publication:__ Audrey Bourret, Andrew Smith, Elisabeth Van Beveren, Stéphane Plourde, Kiersten Curti, Teunis Jansen, David E. Richardson, Martin Castonguay, Naiara Rodriguez-Ezpeleta, Geneviève J. Parent (in prep). *A genomic tool to improve the management of the two populations of Atlantic mackerel (Scomber scombrus) in the Northwest Atlantic.*   
+__Affiliated publication:__ Audrey Bourret, Andrew Smith, Elisabeth Van Beveren, Stéphane Plourde, Kiersten Curti, Teunis Jansen, David E. Richardson, Martin Castonguay, Naiara Rodriguez-Ezpeleta, Geneviève J. Parent (accepted). *Quantifying genetic differentiation and population assignment among two contingents of Atlantic mackerel (Scomber scombrus) in the Northwest Atlantic.* CJFAS  
 __Contact:__      audrey.bourret@dfo-mpo.gc.ca
 
 
