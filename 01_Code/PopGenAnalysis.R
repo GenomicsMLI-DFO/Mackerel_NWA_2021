@@ -640,13 +640,13 @@ fig2b.NA <- res.PCA.america.table  %>%
 fig2b.NA
 
 
-ggsave(filename = here("02_Results/fig2a_PCA_global.png"), plot = fig2a, 
-       width = 3, height = 3 , units = "in",
-       dpi = 300)
+#ggsave(filename = here("02_Results/fig2a_PCA_global.png"), plot = fig2a, 
+#       width = 3, height = 3 , units = "in",
+#       dpi = 300)
 
-ggsave(filename = here("02_Results/fig2b_PCA_NWA.png"), plot = fig2b, 
-       width = 3, height = 3 , units = "in",
-       dpi = 300)
+#ggsave(filename = here("02_Results/fig2b_PCA_NWA.png"), plot = fig2b, 
+#       width = 3, height = 3 , units = "in",
+#       dpi = 300)
 
 # Joining fig4 a and b
 library(ggpubr)
@@ -663,9 +663,9 @@ fig2 <- ggpubr::ggarrange(fig2a + theme(axis.title = element_text(size = 10 ),
 
 fig2
 
-ggsave(filename = here("02_Results/fig2_PCA_wLines.png"), plot = fig2, 
-       width = 7, height = 4 , units = "in",
-       dpi = 300)
+#ggsave(filename = here("02_Results/fig2_PCA_wLines.png"), plot = fig2, 
+#       width = 7, height = 4 , units = "in",
+#       dpi = 300)
 
 
 fig2.NA <- ggarrange(fig2a.NA + theme(axis.title = element_text(size = 10 ),
@@ -680,9 +680,9 @@ fig2.NA <- ggarrange(fig2a.NA + theme(axis.title = element_text(size = 10 ),
 
 fig2.NA
 
-ggsave(filename = here("02_Results/fig2_PCA_NAs.png"), plot = fig2.NA, 
-       width = 7, height = 4 , units = "in", bg = "white",
-       dpi = 300)
+#ggsave(filename = here("02_Results/fig2_PCA_NAs.png"), plot = fig2.NA, 
+#       width = 7, height = 4 , units = "in", bg = "white",
+#       dpi = 300)
 
 
 # PCA - ref samples -------------------------------------------------------
@@ -781,13 +781,13 @@ figS4.PCA.NA
 
 
 
-ggsave(filename = here("02_Results/figS4_PCAref.png"), plot = figS4.PCA, 
-       width = 4, height = 4 , units = "in",
-       dpi = 300)
+#ggsave(filename = here("02_Results/figS4_PCAref.png"), plot = figS4.PCA, 
+#       width = 4, height = 4 , units = "in",
+#       dpi = 300)
 
-ggsave(filename = here("02_Results/figS4_PCAref_NA.png"), plot = figS4.PCA.NA, 
-       width = 4, height = 4 , units = "in",
-       dpi = 300)
+#ggsave(filename = here("02_Results/figS4_PCAref_NA.png"), plot = figS4.PCA.NA, 
+#       width = 4, height = 4 , units = "in",
+#       dpi = 300)
 
 
 res.PCA.ref.neutral.table <- data.frame(Sample = row.names(pca.ref.neutral$scores),
@@ -878,13 +878,13 @@ figS4.PCA.outliers <- res.PCA.ref.outliers.table  %>%
 
 figS4.PCA.outliers
 
-ggsave(filename = here("02_Results/figS4_PCAref_neutral.png"), plot = figS4.PCA.neutral, 
-       width = 4, height = 4 , units = "in",
-       dpi = 300)
+#ggsave(filename = here("02_Results/figS4_PCAref_neutral.png"), plot = figS4.PCA.neutral, 
+#       width = 4, height = 4 , units = "in",
+ #      dpi = 300)
 
-ggsave(filename = here("02_Results/figS4_PCAref_outliers.png"), plot = figS4.PCA.outliers, 
-       width = 4, height = 4 , units = "in",
-       dpi = 300)
+#ggsave(filename = here("02_Results/figS4_PCAref_outliers.png"), plot = figS4.PCA.outliers, 
+#       width = 4, height = 4 , units = "in",
+#       dpi = 300)
 
 
 figS.ref <- ggpubr::ggarrange(figS4.PCA + theme(axis.title = element_text(size = 10 ),
@@ -899,9 +899,9 @@ figS.ref <- ggpubr::ggarrange(figS4.PCA + theme(axis.title = element_text(size =
 
 figS.ref
 
-ggsave(filename = here("02_Results/figS_REF_AllvsNeutral.png"), plot = fig2.NA, 
-       width = 7, height = 4 , units = "in", bg = "white",
-       dpi = 300)
+#ggsave(filename = here("02_Results/figS_REF_AllvsNeutral.png"), plot = fig2.NA, 
+#       width = 7, height = 4 , units = "in", bg = "white",
+#       dpi = 300)
 
 
 fig2a$layers[[3]]$aes_params$size <- 1
@@ -930,8 +930,8 @@ ggsave(filename = here("02_Results/fig2_PCA_withREF.png"), plot = fig2v2,
        width = 8, height = 3 , units = "in", bg = "white",
        dpi = 300)
 
-ggsave(filename = here("02_Results/fig2_PCA_withREF.eps"), plot = fig2v2, 
-       width = 8, height = 3 , units = "in", bg = "white",
+ggsave(filename = here("02_Results/fig2_PCA_withREF.pdf"), plot = fig2v2, 
+       width = 18.2, height = 6.8 , units = "cm", bg = "white",
        dpi = 300)
 
 figNAv2 <- ggpubr::ggarrange(fig2a.NA + theme(axis.title = element_text(size = 10 ),
@@ -956,250 +956,250 @@ ggsave(filename = here("02_Results/fig2_PCA_withREF_NA.png"), plot = figNAv2,
 
 
 
-# PCoA --------------------------------------------------------------------
-library(dartR)
-
-# Function to count NA
-
-
-
-
-df.america.samples        <- tab(gl.america.samples,  NA.method = c("asis"))
-df.america.samples.NAmax        <- tab(gl.america.samples,  NA.method = c("mean"))
-df.america.samples.NAmax  <- apply(df.america.samples , 2, function(x) replace(x, is.na(x), as.numeric(names(which.max(table(x))))))
-
-
-euc.america.samples.NAmax <- dist(df.america.samples.NAmax, method = "euclidean", diag = T, upper = T)
-
-pcoa.america <-  gl.pcoa(euc.america.samples.NAmax, nfactors = 5, parallel = TRUE, n.cores = 16, verbose = 5)
-
-pcoa.america$eig[1]/sum(pcoa.america$eig)
-pcoa.america$eig[2]/sum(pcoa.america$eig)
-pcoa.america$eig[3]/sum(pcoa.america$eig)
-
-df.global.samples        <- tab(gl.global.samples,  NA.method = c("asis"))
-df.global.samples.NAmax        <- tab(gl.global.samples,  NA.method = c("mean"))
-df.global.samples.NAmax  <- apply(df.global.samples , 2, function(x) replace(x, is.na(x), as.numeric(names(which.max(table(x))))))
-euc.global.samples.NAmax <- dist(df.global.samples.NAmax, method = "euclidean", diag = T, upper = T)
-
-pcoa.global <-  gl.pcoa(euc.global.samples.NAmax, nfactors = 5, parallel = TRUE, n.cores = 16, verbose = 5)
-
-gl.pcoa.plot(pcoa.global, gl.global.samples, xaxis = 1 , yaxis = 3)
-
-
-pcoa.global$eig[1]/sum(pcoa.global$eig)
-pcoa.global$eig[2]/sum(pcoa.global$eig)
-pcoa.global$eig[3]/sum(pcoa.global$eig)
-
-str(pcoa.global)
-
-res.PCoA.global.table <- data.frame(Sample = row.names(pcoa.global$scores),
-                                   score = pcoa.global$scores[,1:05]) %>% 
-  left_join(pop.data) %>% #View()
-  mutate(Site = ifelse(new.NAFO == "BOB" , "NEA - Bay of Biscay", 
-                       ifelse(new.NAFO == "Groenland" , "NEA - Greenland",
-                              ifelse(Country == "Canada", "NWA - Canada",
-                                     ifelse(Country == "US", "NWA - US", NA)))))
-
-mean.axis <- res.PCoA.global.table %>% group_by(Site) %>% summarise(Mean.score.Axis.1 = mean(score.Axis.1),
-                                                                     Mean.score.Axis.2 = mean(score.Axis.2))
-
-res.PCoA.global.table <- res.PCoA.global.table %>% left_join(mean.axis ) %>% mutate(nNA = na.gl.ind(gl.global.samples))
-
-
-
-fig2a.pcoa <- res.PCoA.global.table  %>% 
-  ggplot(aes(x = score.Axis.1, y = score.Axis.2)) +
-  #stat_ellipse(aes(col = Site), level = 0.95, type = "norm") +
-  #ggforce::geom_mark_ellipse(aes(label = Pop.RefAdults, col = Pop.RefAdults, filter = !is.na(Ref.adults)))+
-  geom_hline(yintercept = 0) +
-  geom_vline(xintercept = 0) +
-  geom_segment(aes(x = Mean.score.Axis.1, y = Mean.score.Axis.2, xend = score.Axis.1, yend= score.Axis.2, col = Site),
-               size = 0.2, alpha = 0.5)+
-  
-  geom_point(aes(col = Site), alpha = 0.5, size = 2) + 
-  scale_colour_manual(values = c("chocolate4", "chartreuse4", "firebrick2", "dodgerblue1")) +
-  labs(x = "PCo 1 (0.7 %)", y = "PCo 2 (0.4 %)") + 
-  #scale_x_continuous(limits = c(-2, 10))
-  #directlabels::geom_dl(aes(label = pop.final)), method = "smart.grid" ) +
-  #facet_grid(dataset ~ nloci.MEM, scale = "free") +
-  theme_bw() +
-  theme(#axis.text.x = element_blank(),
-     legend.position = "bottom",
-    legend.title = element_blank())
-#axis.title.x = element_blank())
-
-fig2a.pcoa
-
-
-res.PCoA.global.table  %>% 
-  ggplot(aes(x = score.Axis.1, y = score.Axis.2, col = nNA)) +
-  #stat_ellipse(aes(col = Site), level = 0.95, type = "norm") +
-  #ggforce::geom_mark_ellipse(aes(label = Pop.RefAdults, col = Pop.RefAdults, filter = !is.na(Ref.adults)))+
-  geom_hline(yintercept = 0) +
-  geom_vline(xintercept = 0) +
- # geom_segment(aes(x = Mean.score.Axis.1, y = Mean.score.Axis.2, xend = score.Axis.1, yend= score.Axis.2, col = Site),
-#               size = 0.2, alpha = 0.5)+
-  scale_colour_distiller(palette = "Spectral") +
-  geom_point(alpha = 0.5, size = 2) + 
- # scale_colour_manual(values = c("chocolate4", "chartreuse4", "firebrick2", "dodgerblue1")) +
-  labs(x = "PCo 1 (0.7 %)", y = "PCo 2 (0.4 %)") + 
-  #scale_x_continuous(limits = c(-2, 10))
-  #directlabels::geom_dl(aes(label = pop.final)), method = "smart.grid" ) +
- facet_wrap(~Country) +
-  theme_bw() +
-  theme(#axis.text.x = element_blank(),
-    legend.position = "bottom",
-    legend.title = element_blank())
-
-
-
-res.PCoA.america.table <- data.frame(Sample = row.names(pcoa.america$scores),
-                                    score = pcoa.america$scores[,1:5]) %>% 
-  left_join(pop.data) %>% 
-  mutate(Site = ifelse(new.NAFO == "BOB" , "NEA - Bay of Biscay", 
-                       ifelse(new.NAFO == "Groenland" , "NEA - Greenland",
-                              ifelse(Country == "Canada", "NWA - Canada",
-                                     ifelse(Country == "US", "NWA - US", NA)))))
-
-mean.axis <- res.PCoA.america.table %>% group_by(Site) %>% summarise(Mean.score.Axis.1 = mean(score.Axis.1),
-                                                        Mean.score.Axis.2 = mean(score.Axis.2))
-
-res.PCoA.america.table <- res.PCoA.america.table %>% left_join(mean.axis )
-
-fig2b.pcoa <- res.PCoA.america.table  %>% 
-  ggplot(aes(x = score.Axis.1, y = score.Axis.2)) +
- # stat_ellipse(aes(col = Site), level = 0.95, type = "norm") +
-  #stat_conf_ellipse(aes(color = Site), level = 0.95) +
-#  ggforce::geom_mark_ellipse(aes(label = Site, col =Site))+
-  geom_hline(yintercept = 0) +
-  geom_vline(xintercept = 0) +
-
-  geom_segment(aes(x = Mean.score.Axis.1, y = Mean.score.Axis.2, xend = score.Axis.1, yend= score.Axis.2, col = Site),
-               size = 0.2, alpha = 0.5)+
-  geom_point(aes(col = Site), alpha = 0.5, size = 2) + 
-  scale_colour_manual(values = c("firebrick2", "dodgerblue1")) +
-  labs(x = "PCo 1 (0.4 %)", y = "PCo 2 (0.3 %)") + 
-  theme_bw() +
-  theme(#axis.text.x = element_blank(),
-    legend.position = "bottom",
-    legend.title = element_blank())
-
-  fig2b.pcoa
-
-
-ggsave(filename = here("02_Results/fig2a_PCoA_global.png"), plot = fig2a.pcoa, 
-       width = 3, height = 3 , units = "in",
-       dpi = 300)
-
-ggsave(filename = here("02_Results/fig2b_PCoA_NWA.png"), plot = fig2b.pcoa, 
-       width = 3, height = 3 , units = "in",
-       dpi = 300)
-
-# Joining fig4 a and b
-library(ggpubr)
-
-fig2.pcoa <- ggarrange(fig2a.pcoa + theme(axis.title = element_text(size = 10 ),
-                                
-                                plot.margin = margin(10, 10, 10, 20, "pt")),
-                  fig2b.pcoa + theme(axis.title = element_text(size = 10 ),
-                                
-                                plot.margin = margin(10, 10, 10, 20, "pt")),
-                  labels = c("A", "B"),
-                  common.legend = T, legend = "bottom", 
-                  ncol = 2)
-
-fig2.pcoa
-
-ggsave(filename = here("02_Results/fig2_PCoA.png"), plot = fig2.pcoa, 
-       width = 7, height = 4 , units = "in", bg = "white",
-       dpi = 300)
-
-
-df.ref        <- tab(gl.ref,  NA.method = c("mean"))
-df.ref.NAmax  <- apply(df.ref , 2, function(x) replace(x, is.na(x), as.numeric(names(which.max(table(x))))))
-euc.ref.NAmax <- dist(df.ref.NAmax, method = "euclidean", diag = T, upper = T)
-
-pcoa.ref <-  gl.pcoa(euc.ref.NAmax, nfactors = 5, parallel = TRUE, n.cores = 16, verbose = 5)
-
-gl.pcoa.plot(pcoa.ref, gl.ref, xaxis = 1 , yaxis = 2)
-
-
-pcoa.ref$eig[1]/sum(pcoa.ref$eig)
-pcoa.ref$eig[2]/sum(pcoa.ref$eig)
-pcoa.ref$eig[3]/sum(pcoa.ref$eig)
-
-
-
-res.PCoA.ref.table <- data.frame(Sample = row.names(pcoa.ref$scores),
-                                     score = pcoa.ref$scores[,1:5]) %>% 
-  left_join(pop.data) %>% 
-  mutate(Site = ifelse(new.NAFO == "BOB" , "NEA - Bay of Biscay", 
-                       ifelse(new.NAFO == "Groenland" , "NEA - Greenland",
-                              ifelse(Country == "Canada", "NWA - Canada",
-                                     ifelse(Country == "US", "NWA - US", NA)))))
-
-mean.axis <- res.PCoA.ref.table %>% group_by(Site) %>% summarise(Mean.score.Axis.1 = mean(score.Axis.1),
-                                                                 Mean.score.Axis.2 = mean(score.Axis.2))
-
-res.PCoA.ref.table <- res.PCoA.ref.table %>% left_join(mean.axis ) %>% mutate(nNA = na.gl.ind(gl.ref))
-
-hist(na.gl.ind(gl.ref))
-
-figS4.PCoA <- res.PCoA.ref.table  %>% 
-  ggplot(aes(x = score.Axis.1, y = score.Axis.2)) +
-  #  stat_ellipse(aes(col = REF)) +
-  #ggforce::geom_mark_ellipse(aes(label = Pop.RefAdults, col = Pop.RefAdults, filter = !is.na(Ref.adults)))+
-  geom_hline(yintercept = 0) +
-  geom_vline(xintercept = 0) +
-  geom_segment(aes(x = Mean.score.Axis.1, y = Mean.score.Axis.2, xend = score.Axis.1, yend= score.Axis.2, col = REF_assign),
-               size = 0.2, alpha = 0.5)+
-  
-  geom_point(aes(col = REF_assign), alpha = 0.5, size = 2) + 
- scale_colour_manual(values = c("firebrick2", "dodgerblue1"), labels = c("Northern", "Southern")) +
-  labs(x = "PCo 1 (1.2 %)", y = "PCo 2 (1.1 %)") + 
-  #labs(x = "PC1 - 1.1 %", y = "PC2 - 1.1 %") + 
-  #scale_x_continuous(limits = c(-2, 10))
-  #directlabels::geom_dl(aes(label = pop.final)), method = "smart.grid" ) +
-  #facet_grid(dataset ~ nloci.MEM, scale = "free") +
-  theme_bw() +
-  theme(#axis.text.x = element_blank(),
-    #strip.text = element_text(angle = 90),
-    #panel.grid = element_blank(),
-    #panel.spacing = unit(0, "cm"),
-    #panel.border = element_rect(fill = NA, colour = "black"),
-    legend.position = "bottom",
-    legend.title = element_blank())
-#axis.title.x = element_blank())
-
-figS4.PCoA
-
-
-
-res.PCoA.ref.table  %>% 
-  ggplot(aes(x = score.Axis.1, y = score.Axis.2, col = nNA)) +
-  #stat_ellipse(aes(col = Site), level = 0.95, type = "norm") +
-  #ggforce::geom_mark_ellipse(aes(label = Pop.RefAdults, col = Pop.RefAdults, filter = !is.na(Ref.adults)))+
-  geom_hline(yintercept = 0) +
-  geom_vline(xintercept = 0) +
-  # geom_segment(aes(x = Mean.score.Axis.1, y = Mean.score.Axis.2, xend = score.Axis.1, yend= score.Axis.2, col = Site),
-  #               size = 0.2, alpha = 0.5)+
-  scale_colour_gradient(low = "blue", high = "red") +
-  geom_point(alpha = 0.5, size = 2) + 
-  # scale_colour_manual(values = c("chocolate4", "chartreuse4", "firebrick2", "dodgerblue1")) +
-  labs(x = "PCo 1 (0.7 %)", y = "PCo 2 (0.4 %)") + 
-  #scale_x_continuous(limits = c(-2, 10))
-  #directlabels::geom_dl(aes(label = pop.final)), method = "smart.grid" ) +
-  facet_wrap(~Country) +
-  theme_bw() +
-  theme(#axis.text.x = element_blank(),
-    legend.position = "bottom",
-    legend.title = element_blank())
-
-
-  ggsave(filename = here("02_Results/figS4_PCoAref.png"), plot = figS4.PCoA, 
-         width = 4, height = 4 , units = "in",
-         dpi = 300)
+# # PCoA --------------------------------------------------------------------
+# library(dartR)
+# 
+# # Function to count NA
+# 
+# 
+# 
+# 
+# df.america.samples        <- tab(gl.america.samples,  NA.method = c("asis"))
+# df.america.samples.NAmax        <- tab(gl.america.samples,  NA.method = c("mean"))
+# df.america.samples.NAmax  <- apply(df.america.samples , 2, function(x) replace(x, is.na(x), as.numeric(names(which.max(table(x))))))
+# 
+# 
+# euc.america.samples.NAmax <- dist(df.america.samples.NAmax, method = "euclidean", diag = T, upper = T)
+# 
+# pcoa.america <-  gl.pcoa(euc.america.samples.NAmax, nfactors = 5, parallel = TRUE, n.cores = 16, verbose = 5)
+# 
+# pcoa.america$eig[1]/sum(pcoa.america$eig)
+# pcoa.america$eig[2]/sum(pcoa.america$eig)
+# pcoa.america$eig[3]/sum(pcoa.america$eig)
+# 
+# df.global.samples        <- tab(gl.global.samples,  NA.method = c("asis"))
+# df.global.samples.NAmax        <- tab(gl.global.samples,  NA.method = c("mean"))
+# df.global.samples.NAmax  <- apply(df.global.samples , 2, function(x) replace(x, is.na(x), as.numeric(names(which.max(table(x))))))
+# euc.global.samples.NAmax <- dist(df.global.samples.NAmax, method = "euclidean", diag = T, upper = T)
+# 
+# pcoa.global <-  gl.pcoa(euc.global.samples.NAmax, nfactors = 5, parallel = TRUE, n.cores = 16, verbose = 5)
+# 
+# gl.pcoa.plot(pcoa.global, gl.global.samples, xaxis = 1 , yaxis = 3)
+# 
+# 
+# pcoa.global$eig[1]/sum(pcoa.global$eig)
+# pcoa.global$eig[2]/sum(pcoa.global$eig)
+# pcoa.global$eig[3]/sum(pcoa.global$eig)
+# 
+# str(pcoa.global)
+# 
+# res.PCoA.global.table <- data.frame(Sample = row.names(pcoa.global$scores),
+#                                    score = pcoa.global$scores[,1:05]) %>% 
+#   left_join(pop.data) %>% #View()
+#   mutate(Site = ifelse(new.NAFO == "BOB" , "NEA - Bay of Biscay", 
+#                        ifelse(new.NAFO == "Groenland" , "NEA - Greenland",
+#                               ifelse(Country == "Canada", "NWA - Canada",
+#                                      ifelse(Country == "US", "NWA - US", NA)))))
+# 
+# mean.axis <- res.PCoA.global.table %>% group_by(Site) %>% summarise(Mean.score.Axis.1 = mean(score.Axis.1),
+#                                                                      Mean.score.Axis.2 = mean(score.Axis.2))
+# 
+# res.PCoA.global.table <- res.PCoA.global.table %>% left_join(mean.axis ) %>% mutate(nNA = na.gl.ind(gl.global.samples))
+# 
+# 
+# 
+# fig2a.pcoa <- res.PCoA.global.table  %>% 
+#   ggplot(aes(x = score.Axis.1, y = score.Axis.2)) +
+#   #stat_ellipse(aes(col = Site), level = 0.95, type = "norm") +
+#   #ggforce::geom_mark_ellipse(aes(label = Pop.RefAdults, col = Pop.RefAdults, filter = !is.na(Ref.adults)))+
+#   geom_hline(yintercept = 0) +
+#   geom_vline(xintercept = 0) +
+#   geom_segment(aes(x = Mean.score.Axis.1, y = Mean.score.Axis.2, xend = score.Axis.1, yend= score.Axis.2, col = Site),
+#                size = 0.2, alpha = 0.5)+
+#   
+#   geom_point(aes(col = Site), alpha = 0.5, size = 2) + 
+#   scale_colour_manual(values = c("chocolate4", "chartreuse4", "firebrick2", "dodgerblue1")) +
+#   labs(x = "PCo 1 (0.7 %)", y = "PCo 2 (0.4 %)") + 
+#   #scale_x_continuous(limits = c(-2, 10))
+#   #directlabels::geom_dl(aes(label = pop.final)), method = "smart.grid" ) +
+#   #facet_grid(dataset ~ nloci.MEM, scale = "free") +
+#   theme_bw() +
+#   theme(#axis.text.x = element_blank(),
+#      legend.position = "bottom",
+#     legend.title = element_blank())
+# #axis.title.x = element_blank())
+# 
+# fig2a.pcoa
+# 
+# 
+# res.PCoA.global.table  %>% 
+#   ggplot(aes(x = score.Axis.1, y = score.Axis.2, col = nNA)) +
+#   #stat_ellipse(aes(col = Site), level = 0.95, type = "norm") +
+#   #ggforce::geom_mark_ellipse(aes(label = Pop.RefAdults, col = Pop.RefAdults, filter = !is.na(Ref.adults)))+
+#   geom_hline(yintercept = 0) +
+#   geom_vline(xintercept = 0) +
+#  # geom_segment(aes(x = Mean.score.Axis.1, y = Mean.score.Axis.2, xend = score.Axis.1, yend= score.Axis.2, col = Site),
+# #               size = 0.2, alpha = 0.5)+
+#   scale_colour_distiller(palette = "Spectral") +
+#   geom_point(alpha = 0.5, size = 2) + 
+#  # scale_colour_manual(values = c("chocolate4", "chartreuse4", "firebrick2", "dodgerblue1")) +
+#   labs(x = "PCo 1 (0.7 %)", y = "PCo 2 (0.4 %)") + 
+#   #scale_x_continuous(limits = c(-2, 10))
+#   #directlabels::geom_dl(aes(label = pop.final)), method = "smart.grid" ) +
+#  facet_wrap(~Country) +
+#   theme_bw() +
+#   theme(#axis.text.x = element_blank(),
+#     legend.position = "bottom",
+#     legend.title = element_blank())
+# 
+# 
+# 
+# res.PCoA.america.table <- data.frame(Sample = row.names(pcoa.america$scores),
+#                                     score = pcoa.america$scores[,1:5]) %>% 
+#   left_join(pop.data) %>% 
+#   mutate(Site = ifelse(new.NAFO == "BOB" , "NEA - Bay of Biscay", 
+#                        ifelse(new.NAFO == "Groenland" , "NEA - Greenland",
+#                               ifelse(Country == "Canada", "NWA - Canada",
+#                                      ifelse(Country == "US", "NWA - US", NA)))))
+# 
+# mean.axis <- res.PCoA.america.table %>% group_by(Site) %>% summarise(Mean.score.Axis.1 = mean(score.Axis.1),
+#                                                         Mean.score.Axis.2 = mean(score.Axis.2))
+# 
+# res.PCoA.america.table <- res.PCoA.america.table %>% left_join(mean.axis )
+# 
+# fig2b.pcoa <- res.PCoA.america.table  %>% 
+#   ggplot(aes(x = score.Axis.1, y = score.Axis.2)) +
+#  # stat_ellipse(aes(col = Site), level = 0.95, type = "norm") +
+#   #stat_conf_ellipse(aes(color = Site), level = 0.95) +
+# #  ggforce::geom_mark_ellipse(aes(label = Site, col =Site))+
+#   geom_hline(yintercept = 0) +
+#   geom_vline(xintercept = 0) +
+# 
+#   geom_segment(aes(x = Mean.score.Axis.1, y = Mean.score.Axis.2, xend = score.Axis.1, yend= score.Axis.2, col = Site),
+#                size = 0.2, alpha = 0.5)+
+#   geom_point(aes(col = Site), alpha = 0.5, size = 2) + 
+#   scale_colour_manual(values = c("firebrick2", "dodgerblue1")) +
+#   labs(x = "PCo 1 (0.4 %)", y = "PCo 2 (0.3 %)") + 
+#   theme_bw() +
+#   theme(#axis.text.x = element_blank(),
+#     legend.position = "bottom",
+#     legend.title = element_blank())
+# 
+#   fig2b.pcoa
+# 
+# 
+# ggsave(filename = here("02_Results/fig2a_PCoA_global.png"), plot = fig2a.pcoa, 
+#        width = 3, height = 3 , units = "in",
+#        dpi = 300)
+# 
+# ggsave(filename = here("02_Results/fig2b_PCoA_NWA.png"), plot = fig2b.pcoa, 
+#        width = 3, height = 3 , units = "in",
+#        dpi = 300)
+# 
+# # Joining fig4 a and b
+# library(ggpubr)
+# 
+# fig2.pcoa <- ggarrange(fig2a.pcoa + theme(axis.title = element_text(size = 10 ),
+#                                 
+#                                 plot.margin = margin(10, 10, 10, 20, "pt")),
+#                   fig2b.pcoa + theme(axis.title = element_text(size = 10 ),
+#                                 
+#                                 plot.margin = margin(10, 10, 10, 20, "pt")),
+#                   labels = c("A", "B"),
+#                   common.legend = T, legend = "bottom", 
+#                   ncol = 2)
+# 
+# fig2.pcoa
+# 
+# ggsave(filename = here("02_Results/fig2_PCoA.png"), plot = fig2.pcoa, 
+#        width = 7, height = 4 , units = "in", bg = "white",
+#        dpi = 300)
+# 
+# 
+# df.ref        <- tab(gl.ref,  NA.method = c("mean"))
+# df.ref.NAmax  <- apply(df.ref , 2, function(x) replace(x, is.na(x), as.numeric(names(which.max(table(x))))))
+# euc.ref.NAmax <- dist(df.ref.NAmax, method = "euclidean", diag = T, upper = T)
+# 
+# pcoa.ref <-  gl.pcoa(euc.ref.NAmax, nfactors = 5, parallel = TRUE, n.cores = 16, verbose = 5)
+# 
+# gl.pcoa.plot(pcoa.ref, gl.ref, xaxis = 1 , yaxis = 2)
+# 
+# 
+# pcoa.ref$eig[1]/sum(pcoa.ref$eig)
+# pcoa.ref$eig[2]/sum(pcoa.ref$eig)
+# pcoa.ref$eig[3]/sum(pcoa.ref$eig)
+# 
+# 
+# 
+# res.PCoA.ref.table <- data.frame(Sample = row.names(pcoa.ref$scores),
+#                                      score = pcoa.ref$scores[,1:5]) %>% 
+#   left_join(pop.data) %>% 
+#   mutate(Site = ifelse(new.NAFO == "BOB" , "NEA - Bay of Biscay", 
+#                        ifelse(new.NAFO == "Groenland" , "NEA - Greenland",
+#                               ifelse(Country == "Canada", "NWA - Canada",
+#                                      ifelse(Country == "US", "NWA - US", NA)))))
+# 
+# mean.axis <- res.PCoA.ref.table %>% group_by(Site) %>% summarise(Mean.score.Axis.1 = mean(score.Axis.1),
+#                                                                  Mean.score.Axis.2 = mean(score.Axis.2))
+# 
+# res.PCoA.ref.table <- res.PCoA.ref.table %>% left_join(mean.axis ) %>% mutate(nNA = na.gl.ind(gl.ref))
+# 
+# hist(na.gl.ind(gl.ref))
+# 
+# figS4.PCoA <- res.PCoA.ref.table  %>% 
+#   ggplot(aes(x = score.Axis.1, y = score.Axis.2)) +
+#   #  stat_ellipse(aes(col = REF)) +
+#   #ggforce::geom_mark_ellipse(aes(label = Pop.RefAdults, col = Pop.RefAdults, filter = !is.na(Ref.adults)))+
+#   geom_hline(yintercept = 0) +
+#   geom_vline(xintercept = 0) +
+#   geom_segment(aes(x = Mean.score.Axis.1, y = Mean.score.Axis.2, xend = score.Axis.1, yend= score.Axis.2, col = REF_assign),
+#                size = 0.2, alpha = 0.5)+
+#   
+#   geom_point(aes(col = REF_assign), alpha = 0.5, size = 2) + 
+#  scale_colour_manual(values = c("firebrick2", "dodgerblue1"), labels = c("Northern", "Southern")) +
+#   labs(x = "PCo 1 (1.2 %)", y = "PCo 2 (1.1 %)") + 
+#   #labs(x = "PC1 - 1.1 %", y = "PC2 - 1.1 %") + 
+#   #scale_x_continuous(limits = c(-2, 10))
+#   #directlabels::geom_dl(aes(label = pop.final)), method = "smart.grid" ) +
+#   #facet_grid(dataset ~ nloci.MEM, scale = "free") +
+#   theme_bw() +
+#   theme(#axis.text.x = element_blank(),
+#     #strip.text = element_text(angle = 90),
+#     #panel.grid = element_blank(),
+#     #panel.spacing = unit(0, "cm"),
+#     #panel.border = element_rect(fill = NA, colour = "black"),
+#     legend.position = "bottom",
+#     legend.title = element_blank())
+# #axis.title.x = element_blank())
+# 
+# figS4.PCoA
+# 
+# 
+# 
+# res.PCoA.ref.table  %>% 
+#   ggplot(aes(x = score.Axis.1, y = score.Axis.2, col = nNA)) +
+#   #stat_ellipse(aes(col = Site), level = 0.95, type = "norm") +
+#   #ggforce::geom_mark_ellipse(aes(label = Pop.RefAdults, col = Pop.RefAdults, filter = !is.na(Ref.adults)))+
+#   geom_hline(yintercept = 0) +
+#   geom_vline(xintercept = 0) +
+#   # geom_segment(aes(x = Mean.score.Axis.1, y = Mean.score.Axis.2, xend = score.Axis.1, yend= score.Axis.2, col = Site),
+#   #               size = 0.2, alpha = 0.5)+
+#   scale_colour_gradient(low = "blue", high = "red") +
+#   geom_point(alpha = 0.5, size = 2) + 
+#   # scale_colour_manual(values = c("chocolate4", "chartreuse4", "firebrick2", "dodgerblue1")) +
+#   labs(x = "PCo 1 (0.7 %)", y = "PCo 2 (0.4 %)") + 
+#   #scale_x_continuous(limits = c(-2, 10))
+#   #directlabels::geom_dl(aes(label = pop.final)), method = "smart.grid" ) +
+#   facet_wrap(~Country) +
+#   theme_bw() +
+#   theme(#axis.text.x = element_blank(),
+#     legend.position = "bottom",
+#     legend.title = element_blank())
+# 
+# 
+#   ggsave(filename = here("02_Results/figS4_PCoAref.png"), plot = figS4.PCoA, 
+#          width = 4, height = 4 , units = "in",
+#          dpi = 300)
 
 # Structure analysis ------------------------------------------------------
 
@@ -1843,7 +1843,7 @@ res.america.FST %>% group_by(Levels) %>% summarise(MinFST = min(Fst),
 
 res.america.FST %>% filter(Levels == "Intra-Canada") %>% arrange(desc(`Lower bound CI limit`))
 
-write_csv(res.america.FST, file.path(here::here(), "02_Results", "04_Fst", "FST_NWA_results.csv"))
+#write_csv(res.america.FST, file.path(here::here(), "02_Results", "04_Fst", "FST_NWA_results.csv"))
 
 ggFst <- res.america.FST %>%
   ggplot(aes(x = Comparison, y = Fst)) + 
@@ -1879,8 +1879,8 @@ ggsave(filename = here("02_Results/fig3.v4_Fst_NWA.png"), plot = fig3.v2,
        width = 7, height = 4 , units = "in",
        dpi = 300)
 
-ggsave(filename = here("02_Results/fig3.v4_Fst_NWA.eps"), plot = fig3.v2, 
-       width = 7, height = 4 , units = "in",
+ggsave(filename = here("02_Results/fig3.v4_Fst_NWA.pdf"), plot = fig3.v2, 
+       width = 18.2, height = 10.4 , units = "cm",
        dpi = 300)
 
 
@@ -2239,8 +2239,8 @@ ggsave(filename = here("02_Results/fig4.v2_AssignmentValidation_v1.png"), plot =
        width = 6, height = 3 , units = "in",
        dpi = 300)
 
-ggsave(filename = here("02_Results/fig4.v2_AssignmentValidation_v1.eps"), plot = fig4.v2, 
-       width = 6, height = 3 , units = "in",
+ggsave(filename = here("02_Results/fig4.v2_AssignmentValidation_v1.pdf"), plot = fig4.v2, 
+       width = 18.2, height = 8 , units = "cm",
        dpi = 300)
 
 
@@ -2349,41 +2349,41 @@ assign.others <- read.table(file.path("./02_Results/03_assignPOP/Assignations_SV
 
 # graph
 
-# Rapid check - no more 5Y in 5YZe
-assign.others %>%  left_join(pop.data, by = c("Ind.ID" = "Sample")) %>% 
-  group_by(new.NAFO, NAFO) %>% summarise(N = n())
-
-# Stats
-
-df.na <- data.frame(Sample = indNames(gl.america.samples),
-                    NNA = na.gl.ind(gl.america.samples))
-
-write_csv(df.na, "na.test.2021-11-17.csv")
-
-bad.ID <-df.na %>% filter(NNA>=0.10) %>% pull(Sample)
-
-df.na %>% View()
-
-test20 <- assign.others %>%  left_join(pop.data, by = c("Ind.ID" = "Sample")) %>% 
-  left_join(df.na, by = c("Ind.ID" = "Sample")) %>% 
-  ggplot(aes(x= NNA, y = CAN, col = Sequencage) )+ geom_point() + 
-  facet_wrap(~new.NAFO, nrow = 2)
-
-test20
-
-test30 <- assign.others %>%  left_join(pop.data, by = c("Ind.ID" = "Sample")) %>% 
-  left_join(df.na, by = c("Ind.ID" = "Sample")) %>% 
-  ggplot(aes(x= NNA, y = CAN, col = Sequencage) )+ geom_point() + 
-  facet_wrap(~new.NAFO, nrow = 2)
-
-test30
-
-test15 <- assign.others %>%  left_join(pop.data, by = c("Ind.ID" = "Sample")) %>% 
-  left_join(df.na, by = c("Ind.ID" = "Sample")) %>% 
-  ggplot(aes(x= NNA, y = CAN, col = Sequencage) )+ geom_point() + 
-  facet_wrap(~new.NAFO, nrow = 2)
-
-test15
+# # Rapid check - no more 5Y in 5YZe
+# assign.others %>%  left_join(pop.data, by = c("Ind.ID" = "Sample")) %>% 
+#   group_by(new.NAFO, NAFO) %>% summarise(N = n())
+# 
+# # Stats
+# 
+# df.na <- data.frame(Sample = indNames(gl.america.samples),
+#                     NNA = na.gl.ind(gl.america.samples))
+# 
+# #write_csv(df.na, "na.test.2021-11-17.csv")
+# 
+# bad.ID <-df.na %>% filter(NNA>=0.10) %>% pull(Sample)
+# 
+# #df.na %>% View()
+# 
+# test20 <- assign.others %>%  left_join(pop.data, by = c("Ind.ID" = "Sample")) %>% 
+#   left_join(df.na, by = c("Ind.ID" = "Sample")) %>% 
+#   ggplot(aes(x= NNA, y = CAN, col = Sequencage) )+ geom_point() + 
+#   facet_wrap(~new.NAFO, nrow = 2)
+# 
+# test20
+# 
+# test30 <- assign.others %>%  left_join(pop.data, by = c("Ind.ID" = "Sample")) %>% 
+#   left_join(df.na, by = c("Ind.ID" = "Sample")) %>% 
+#   ggplot(aes(x= NNA, y = CAN, col = Sequencage) )+ geom_point() + 
+#   facet_wrap(~new.NAFO, nrow = 2)
+# 
+# test30
+# 
+# test15 <- assign.others %>%  left_join(pop.data, by = c("Ind.ID" = "Sample")) %>% 
+#   left_join(df.na, by = c("Ind.ID" = "Sample")) %>% 
+#   ggplot(aes(x= NNA, y = CAN, col = Sequencage) )+ geom_point() + 
+#   facet_wrap(~new.NAFO, nrow = 2)
+# 
+# test15
 
 
 
@@ -2462,9 +2462,9 @@ fig5 <- assign.others %>%  left_join(pop.data, by = c("Ind.ID" = "Sample")) %>%
 
 fig5
 
-ggsave(filename = here("02_Results/fig5_AdultAssignments.png"), plot = fig5, 
-       width = 4, height = 3.5 , units = "in",
-       dpi = 300)
+#ggsave(filename = here("02_Results/fig5_AdultAssignments.png"), plot = fig5, 
+#       width = 4, height = 3.5 , units = "in",
+#       dpi = 300)
 
 
  fig5a <- assign.others %>%  left_join(pop.data, by = c("Ind.ID" = "Sample")) %>% 
@@ -2510,7 +2510,7 @@ fig5a.v1 <- assign.others %>%  left_join(pop.data, by = c("Ind.ID" = "Sample")) 
   coord_polar("y", start = 0) + 
   scale_fill_manual(values = c("salmon1","firebrick2",  "dodgerblue1", "skyblue2")) +
   #scale_y_continuous(limits = c(-1,1)) +
-  geom_text(aes(y = 0, label = paste0("n=",SUM)), vjust = 4, col = "black", cex = 3) +
+  geom_text(aes(y = 0, label = paste0("n=",SUM)), vjust = 3, col = "black", cex = 3) +
   facet_grid(.~new.NAFO) + theme_void() +
   theme(legend.title = element_blank(),
         legend.position = "bottom",
@@ -2519,33 +2519,33 @@ fig5a.v1 <- assign.others %>%  left_join(pop.data, by = c("Ind.ID" = "Sample")) 
 
 fig5a.v1
 
-fig5a.v2 <- assign.others %>%  left_join(pop.data, by = c("Ind.ID" = "Sample")) %>% 
-  mutate(new.NAFO = ifelse(new.NAFO == "5YZe", "5Ze", new.NAFO) ,
-         new.NAFO = factor(new.NAFO, levels = c("6AB", "5Zw", "5Ze", "4WX", "3Ps4Vn", "4T", "4RS", "3K")),
-         new.pred.pop = ifelse(pred.pop == "CAN" & CAN >=.7, "Northern 70%", 
-                               ifelse(pred.pop == "CAN" & CAN >=.5, "Unassigned",
-                                      ifelse(pred.pop == "US" & US >=.7, "Southern 70%", 
-                                             ifelse(pred.pop == "US" & US >=.5, "Unassigned",
-                                                    "ERROR")))),
-         new.pred.pop = factor(new.pred.pop, levels = c("Northern 70%", "Southern 70%", "Unassigned"))) %>% 
-  # Faire les stats pour les graphiques
-  group_by(new.NAFO, new.pred.pop) %>% 
-  summarise(N = n()) %>% 
-  mutate(SUM = sum(N),
-         freq = N / sum(N)) %>% 
-  ggplot(aes(x = 1, y = freq, fill = new.pred.pop)) +
-  geom_bar(width = , stat = "identity", color = "gray10", cex = 0.2) +
-  coord_polar("y", start = 0) + 
-  scale_fill_manual(values = c("firebrick2",  "dodgerblue1", "gray")) +
-  #scale_y_continuous(limits = c(-1,1)) +
-  geom_text(aes(y = 0, label = paste0("n=",SUM)), vjust = 4, col = "black", cex = 3) +
-  facet_grid(.~new.NAFO) + theme_void() +
-  theme(legend.title = element_blank(),
-        legend.position = "bottom",
-        plot.background = element_rect(fill = "white", colour = NA),
-        plot.margin = margin(t = 20, r = 10, b = 10, l = 10, unit = "pt"))
-
-fig5a.v2
+# fig5a.v2 <- assign.others %>%  left_join(pop.data, by = c("Ind.ID" = "Sample")) %>% 
+#   mutate(new.NAFO = ifelse(new.NAFO == "5YZe", "5Ze", new.NAFO) ,
+#          new.NAFO = factor(new.NAFO, levels = c("6AB", "5Zw", "5Ze", "4WX", "3Ps4Vn", "4T", "4RS", "3K")),
+#          new.pred.pop = ifelse(pred.pop == "CAN" & CAN >=.7, "Northern 70%", 
+#                                ifelse(pred.pop == "CAN" & CAN >=.5, "Unassigned",
+#                                       ifelse(pred.pop == "US" & US >=.7, "Southern 70%", 
+#                                              ifelse(pred.pop == "US" & US >=.5, "Unassigned",
+#                                                     "ERROR")))),
+#          new.pred.pop = factor(new.pred.pop, levels = c("Northern 70%", "Southern 70%", "Unassigned"))) %>% 
+#   # Faire les stats pour les graphiques
+#   group_by(new.NAFO, new.pred.pop) %>% 
+#   summarise(N = n()) %>% 
+#   mutate(SUM = sum(N),
+#          freq = N / sum(N)) %>% 
+#   ggplot(aes(x = 1, y = freq, fill = new.pred.pop)) +
+#   geom_bar(width = , stat = "identity", color = "gray10", cex = 0.2) +
+#   coord_polar("y", start = 0) + 
+#   scale_fill_manual(values = c("firebrick2",  "dodgerblue1", "gray")) +
+#   #scale_y_continuous(limits = c(-1,1)) +
+#   geom_text(aes(y = 0, label = paste0("n=",SUM)), vjust = 4, col = "black", cex = 3) +
+#   facet_grid(.~new.NAFO) + theme_void() +
+#   theme(legend.title = element_blank(),
+#         legend.position = "bottom",
+#         plot.background = element_rect(fill = "white", colour = NA),
+#         plot.margin = margin(t = 20, r = 10, b = 10, l = 10, unit = "pt"))
+# 
+# fig5a.v2
 
 id.order <- assign.others  %>% arrange(CAN) %>% pull(Ind.ID)
 
@@ -2698,7 +2698,7 @@ fig5.v3 <- ggpubr::ggarrange(fig5a + theme( #plot.margin = margin(t = 10, r = 10
 fig5.v3
 
 
-fig5.v4 <- ggpubr::ggarrange(fig5a.v1 + theme( #plot.margin = margin(t = 10, r = 10, b = 10, l = 10, unit = "pt"),
+fig5.v4 <- ggpubr::ggarrange(fig5a.v1 + theme( plot.margin = margin(t = 0, r = 10, b = 0, l = 10, unit = "pt"),
   panel.spacing = unit(20, "pt")), 
   fig5c.v1,
   labels = c("A", "B"),
@@ -2715,8 +2715,8 @@ ggsave(filename = here("02_Results/fig5.v4_AdultAssignments.png"), plot = fig5.v
        width = 8, height = 4 , units = "in",
        dpi = 300)
 
-ggsave(filename = here("02_Results/fig5.v4_AdultAssignments.eps"), plot = fig5.v4, 
-       width = 8, height = 4 , units = "in",
+ggsave(filename = here("02_Results/fig5.v4_AdultAssignments.pdf"), plot = fig5.v4, 
+       width = 18.2, height = 9.2 , units = "cm",
        dpi = 300)
 
 
